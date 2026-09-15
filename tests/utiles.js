@@ -34,10 +34,29 @@ async function abrir(page, ruta = '/') {
 }
 
 // Cambia el idioma y espera a que se apliquen las traducciones.
+// En móvil el selector del encabezado está oculto y el único alcanzable vive
+// dentro del panel, así que hay que abrirlo igual que haría un visitante.
 async function cambiarIdioma(page, lang) {
-  await page.click(`.idio button[data-lang="${lang}"]`);
+  const boton = page.locator(`.idio button[data-lang="${lang}"]`);
+  let visible = boton.locator('visible=true').first();
+
+  if (!(await visible.count())) {
+    await page.click('.btn-indice');
+    await page.locator('#panel').waitFor({ state: 'visible' });
+    visible = boton.locator('visible=true').first();
+  }
+
+  await visible.click();
   await page.waitForFunction(
     (l) => document.documentElement.getAttribute('lang') === l, lang, { timeout: 5000 });
+
+  // Si se abrió el panel para llegar al selector, se cierra: dejarlo abierto
+  // falsearía las medidas de las pruebas que vengan después.
+  const panel = page.locator('#panel');
+  if (await panel.isVisible().catch(() => false)) {
+    await page.click('.panel-cerrar');
+    await panel.waitFor({ state: 'hidden' }).catch(() => {});
+  }
 }
 
 // Devuelve cuánto desborda el documento por la derecha (0 = sin scroll horizontal).

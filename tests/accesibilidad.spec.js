@@ -9,12 +9,29 @@ const FORMULA_CONTRASTE = `
   function luminancia(rgb) { return 0.2126 * aLineal(rgb[0]) + 0.7152 * aLineal(rgb[1]) + 0.0722 * aLineal(rgb[2]); }
   function aRGB(s) { const m = s.match(/\\d+(\\.\\d+)?/g); return m ? m.slice(0, 3).map(Number) : null; }
   function fondoReal(n) {
+    // Sube por los ancestros hasta encontrar un fondo opaco. Hay que mirar
+    // también background-image: la portada y el cierre pintan su color con un
+    // degradado, y ahí backgroundColor vale rgba(0,0,0,0). Si solo se mirase
+    // backgroundColor se llegaría al blanco del body y saldría texto blanco
+    // sobre blanco, 1:1, que es un falso positivo.
     let e = n;
     while (e && e !== document.documentElement) {
-      const c = getComputedStyle(e).backgroundColor;
+      const s = getComputedStyle(e);
+      const c = s.backgroundColor;
       const rgb = aRGB(c);
       const alfa = c.startsWith('rgba') ? parseFloat(c.split(',')[3]) : 1;
       if (rgb && alfa > 0.9) return rgb;
+      if (s.backgroundImage && s.backgroundImage !== 'none') {
+        // Sin expresiones regulares: este bloque viaja dentro de una plantilla
+        // de texto y las barras invertidas se perderían por el camino.
+        const img = s.backgroundImage;
+        const i = img.indexOf('rgb');
+        if (i >= 0) {
+          const desde = img.slice(i);
+          const v = desde.slice(desde.indexOf('(') + 1, desde.indexOf(')')).split(',').map(Number);
+          if (v.length >= 3 && (v.length < 4 || v[3] > 0.9)) return v.slice(0, 3);
+        }
+      }
       e = e.parentElement;
     }
     return [255, 255, 255];

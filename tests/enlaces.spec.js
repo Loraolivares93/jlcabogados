@@ -68,6 +68,33 @@ test.describe('Enlaces', () => {
     });
   }
 
+  test('@critico en móvil el panel navega a todas las secciones', async ({ page }) => {
+    // En móvil el menú del encabezado está oculto y se navega por el panel,
+    // así que los casos de arriba se omiten ahí. Esta es su cobertura.
+    await page.setViewportSize({ width: 390, height: 840 });
+    await abrir(page);
+
+    for (const seccion of SECCIONES) {
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.click('.btn-indice');
+      await page.locator('#panel').waitFor({ state: 'visible' });
+
+      const enlace = page.locator(`#panel a[href="#${seccion}"]`).first();
+      expect(await enlace.count(), `El panel no ofrece #${seccion}`).toBeGreaterThan(0);
+      await enlace.click();
+      await page.waitForTimeout(400);
+
+      const r = await page.evaluate((id) => {
+        const s = document.getElementById(id);
+        return { scrollY: window.scrollY, top: s.getBoundingClientRect().top };
+      }, seccion);
+
+      expect(r.scrollY, `En móvil, "${seccion}" no desplaza la página`).toBeGreaterThan(5);
+      expect(r.top, `En móvil, #${seccion} queda tapado por la cabecera`).toBeGreaterThanOrEqual(-2);
+      await expect(page.locator('#panel'), 'El panel debe cerrarse al navegar').toBeHidden();
+    }
+  });
+
   test('@critico los enlaces del pie también funcionan', async ({ page }) => {
     await abrir(page);
     const rotos = await page.evaluate(() => {
