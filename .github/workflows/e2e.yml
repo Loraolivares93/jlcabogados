@@ -1,0 +1,95 @@
+name: Pruebas E2E
+
+# Se ejecuta solo, sin intervención:
+#  - en cada push a main (cada vez que se arregla o añade algo)
+#  - en cada pull request
+#  - todos los días a las 11:00 UTC sobre el sitio ya publicado
+#  - a mano, desde la pestaña Actions
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['**.md']
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # 1. Prueba el código del repositorio, antes de que llegue a producción.
+  codigo:
+    name: Código del repositorio
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci || npm install
+
+      - name: Instalar Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Ejecutar la suite
+        run: npx playwright test
+
+      - name: Guardar el informe
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: informe-e2e-${{ github.run_number }}
+          path: |
+            playwright-report/
+            informe/
+          retention-days: 30
+
+  # 2. Comprueba el sitio ya publicado: detecta fallos de despliegue de Pages.
+  publicado:
+    name: Sitio publicado
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Tras un push espera al despliegue de Pages; en PR no aplica.
+    if: github.event_name != 'pull_request'
+    needs: codigo
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci || npm install
+
+      - name: Instalar Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Esperar a que GitHub Pages publique
+        if: github.event_name == 'push'
+        run: sleep 90
+
+      - name: Ejecutar la suite contra jlcabogados.com
+        env:
+          BASE_URL: https://jlcabogados.com
+        run: npx playwright test
+
+      - name: Guardar el informe
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: informe-publicado-${{ github.run_number }}
+          path: playwright-report/
+          retention-days: 30
