@@ -254,6 +254,8 @@ html.panel-abierto{overflow:hidden}
 .btn-solido:hover{background:#D8B872;border-color:#D8B872}
 .btn-linea{border:1px solid rgba(255,255,255,.42);color:#fff}
 .btn-linea:hover{border-color:#fff;background:rgba(255,255,255,.09)}
+.aviso-copia{min-height:1.2em;margin:14px 0 0;font-family:var(--display);font-size:12px;
+  letter-spacing:.06em;color:var(--acento-osc)}
 .btn-osc{background:var(--marino);color:#fff}
 .btn-osc:hover{background:#163A5C}
 .btn-osc-linea{border:1px solid var(--linea);color:var(--tinta)}
@@ -1758,9 +1760,11 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
         <p data-t="ciep">Describa el asunto en dos líneas y le decimos quién debe verlo y en qué plazo.</p>
       </div>
       <div class="acciones">
-        <a class="btn btn-solido" href="mailto:info@jlcabogados.com" data-t="cieb1">Escribir a la firma</a>
-        <a class="btn btn-linea" href="tel:+18095664065" data-t="cieb2">Llamar</a>
+        <a class="btn btn-solido" href="https://wa.me/18297077773" target="_blank" rel="noopener" data-t="cieb1">Escribir por WhatsApp</a>
+        <a class="btn btn-linea" href="mailto:info@jlcabogados.com?subject=Consulta%20desde%20el%20sitio" data-copiar="info@jlcabogados.com" data-t="cieb2">Escribir por correo</a>
+        <a class="btn btn-linea" href="tel:+18095664065" data-copiar="(809) 566-4065">(809) 566-4065</a>
       </div>
+      <p class="aviso-copia" role="status" aria-live="polite"></p>
     </div>
   </section>
 </main>
@@ -1919,7 +1923,7 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
 
     cietit:"Tell us about your case",
     ciep:"Describe the matter in two lines and we will tell you who should handle it and in what timeframe.",
-    cieb1:"Email the firm", cieb2:"Call",
+    cieb1:"Message on WhatsApp", cieb2:"Send an email",
 
     piep:"A law firm in Santo Domingo, Dominican Republic. In practice since 1991 before every level of the Dominican judiciary.",
     pieh1:"Sections", pl1:"The firm", pl2:"Practice areas", pl3:"Attorneys", pl4:"Contact",
@@ -1958,6 +1962,34 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
   var inicial = 'es';
   try { if (localStorage.getItem('jlc-lang') === 'en') inicial = 'en'; } catch (e) {}
   pintar(inicial);
+
+  // Respaldo de copiado. En un ordenador sin cliente de correo ni marcador,
+  // mailto: y tel: no abren nada y el visitante se queda sin el dato. Se copia
+  // igualmente al portapapeles, y el aviso solo aparece si medio segundo despues
+  // la pagina sigue al frente, es decir, si de verdad no se abrio ninguna app.
+  var aviso = document.querySelector('.aviso-copia');
+  var TEXTOS = {
+    es: { tel: 'Numero copiado: ', correo: 'Direccion copiada: ' },
+    en: { tel: 'Number copied: ', correo: 'Address copied: ' }
+  };
+  var borrado;
+  if (aviso && navigator.clipboard && navigator.clipboard.writeText) {
+    [].forEach.call(document.querySelectorAll('[data-copiar]'), function (a) {
+      a.addEventListener('click', function () {
+        var valor = a.getAttribute('data-copiar');
+        var tipo = a.getAttribute('href').indexOf('tel:') === 0 ? 'tel' : 'correo';
+        var lang = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'es';
+        navigator.clipboard.writeText(valor).then(function () {
+          setTimeout(function () {
+            if (document.hidden || !document.hasFocus()) return;
+            aviso.textContent = TEXTOS[lang][tipo] + valor;
+            clearTimeout(borrado);
+            borrado = setTimeout(function () { aviso.textContent = ''; }, 8000);
+          }, 500);
+        }, function () {});
+      });
+    });
+  }
 })();
 </script>
 

@@ -127,7 +127,8 @@ test.describe('Enlaces', () => {
       });
       document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
         const h = a.getAttribute('href');
-        if (!/^mailto:[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(h)) out.push(`mailto mal formado: ${h}`);
+        // Se admite un asunto prellenado: mailto:...?subject=...
+        if (!/^mailto:[^@\s?]+@[^@\s?]+\.[a-z]{2,}(\?\S*)?$/i.test(h)) out.push(`mailto mal formado: ${h}`);
       });
       return out;
     });

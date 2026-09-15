@@ -1,6 +1,6 @@
 // Contacto: es la vía por la que entra el cliente. Nada aquí puede fallar en silencio.
 const { test, expect } = require('@playwright/test');
-const { abrir, CONTACTO } = require('./utiles');
+const { abrir, cambiarIdioma, CONTACTO } = require('./utiles');
 
 test.describe('Contacto', () => {
 
@@ -62,6 +62,68 @@ test.describe('Contacto', () => {
 
     await expect(seccion.locator(`a[href="${CONTACTO.correo.href}"]`).first()).toHaveCount(1);
     await expect(seccion.getByText(CONTACTO.direccion, { exact: false }).first()).toBeVisible();
+  });
+
+  // El cierre es la última llamada a la acción de la página. Antes ofrecía solo
+  // mailto: y tel:, que en un ordenador sin cliente de correo ni marcador no
+  // abren nada: el visitante pulsaba y no pasaba nada.
+  test.describe('Cierre "Cuéntenos su caso"', () => {
+
+    test('@critico ofrece una vía que funciona en cualquier equipo', async ({ page }) => {
+      await abrir(page);
+      const wa = page.locator('.cierre a[href*="wa.me"]');
+      await expect(wa, 'WhatsApp es la única vía que no depende de apps instaladas').toHaveCount(1);
+      await expect(wa).toBeVisible();
+      await expect(wa).toHaveAttribute('target', '_blank');
+      await expect(wa).toHaveAttribute('rel', /noopener/);
+    });
+
+    test('@critico las tres vías apuntan a los datos correctos', async ({ page }) => {
+      await abrir(page);
+      const destinos = await page.$$eval('.cierre .acciones a',
+        as => as.map(a => a.getAttribute('href')));
+      expect(destinos.some(h => h.includes('wa.me/18297077773')), 'falta WhatsApp').toBe(true);
+      expect(destinos.some(h => h.startsWith('mailto:info@jlcabogados.com')), 'falta el correo').toBe(true);
+      expect(destinos.some(h => h === 'tel:+18095664065'), 'falta el teléfono').toBe(true);
+    });
+
+    test('@critico copia el dato al portapapeles como respaldo', async ({ page, context }) => {
+      await context.grantPermissions(['clipboard-read', 'clipboard-write']).catch(() => {});
+      await abrir(page);
+
+      const correo = page.locator('.cierre a[data-copiar]').first();
+      const esperado = await correo.getAttribute('data-copiar');
+
+      // Se evita que el navegador intente abrir mailto:/tel:, que en las pruebas
+      // no lleva a ninguna parte; lo que se comprueba es el respaldo.
+      await page.evaluate(() => {
+        document.querySelectorAll('.cierre a[data-copiar]')
+          .forEach(a => a.addEventListener('click', e => e.preventDefault()));
+      });
+      await correo.click();
+
+      const copiado = await page.evaluate(() => navigator.clipboard.readText());
+      expect(copiado, 'Si no se abre el cliente de correo, al menos queda copiado').toBe(esperado);
+
+      // El aviso aparece medio segundo después, solo si no se abrió ninguna app.
+      await expect(page.locator('.aviso-copia')).toContainText(esperado, { timeout: 4000 });
+    });
+
+    test('el aviso de copiado se anuncia y respeta el idioma', async ({ page, context }) => {
+      await context.grantPermissions(['clipboard-read', 'clipboard-write']).catch(() => {});
+      await abrir(page);
+      const aviso = page.locator('.aviso-copia');
+      await expect(aviso).toHaveAttribute('role', 'status');
+      await expect(aviso).toHaveAttribute('aria-live', 'polite');
+
+      await cambiarIdioma(page, 'en');
+      await page.evaluate(() => {
+        document.querySelectorAll('.cierre a[data-copiar]')
+          .forEach(a => a.addEventListener('click', e => e.preventDefault()));
+      });
+      await page.locator('.cierre a[data-copiar]').first().click();
+      await expect(aviso).toContainText(/copied/i, { timeout: 4000 });
+    });
   });
 
   test('el enlace al mapa apunta a las coordenadas de la oficina', async ({ page }) => {

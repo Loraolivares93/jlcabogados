@@ -13,6 +13,46 @@ const { tomarInstantanea } = require('../scripts/instantanea-lib');
 
 const RUTA = path.join(__dirname, 'instantanea.json');
 
+// Recorre las dos estructuras en paralelo y devuelve solo las hojas que
+// difieren, con la ruta exacta. Volcar los objetos enteros no sirve de nada:
+// el informe debe decir qué cambió, no repetir el sitio completo.
+function diferencias(antes, ahora, ruta = '') {
+  const out = [];
+  const corta = (v) => {
+    const s = typeof v === 'string' ? v : JSON.stringify(v);
+    return s === undefined ? 'undefined' : (s.length > 120 ? s.slice(0, 117) + '…' : s);
+  };
+
+  if (Array.isArray(antes) && Array.isArray(ahora)) {
+    const n = Math.max(antes.length, ahora.length);
+    if (antes.length !== ahora.length) {
+      out.push(`${ruta}: la lista pasa de ${antes.length} a ${ahora.length} elementos`);
+    }
+    for (let i = 0; i < n; i++) {
+      if (i >= antes.length) out.push(`${ruta}[${i}]: NUEVO → ${corta(ahora[i])}`);
+      else if (i >= ahora.length) out.push(`${ruta}[${i}]: ELIMINADO ← ${corta(antes[i])}`);
+      else out.push(...diferencias(antes[i], ahora[i], `${ruta}[${i}]`));
+    }
+    return out;
+  }
+
+  const objeto = (v) => v && typeof v === 'object';
+  if (objeto(antes) && objeto(ahora)) {
+    for (const k of new Set([...Object.keys(antes), ...Object.keys(ahora)])) {
+      const sub = ruta ? `${ruta}.${k}` : k;
+      if (!(k in antes)) out.push(`${sub}: apartado NUEVO`);
+      else if (!(k in ahora)) out.push(`${sub}: apartado ELIMINADO`);
+      else out.push(...diferencias(antes[k], ahora[k], sub));
+    }
+    return out;
+  }
+
+  if (JSON.stringify(antes) !== JSON.stringify(ahora)) {
+    out.push(`${ruta}\n      antes: ${corta(antes)}\n      ahora: ${corta(ahora)}`);
+  }
+  return out;
+}
+
 test.describe('Regresión', () => {
 
   test('@regresion la estructura del sitio no ha cambiado', async ({ page }) => {
@@ -22,20 +62,12 @@ test.describe('Regresión', () => {
     const referencia = JSON.parse(fs.readFileSync(RUTA, 'utf8'));
     const actual = await tomarInstantanea(page, { abrir, cambiarIdioma });
 
-    const diferencias = [];
-    const comparar = (ruta, a, b) => {
-      const ja = JSON.stringify(a), jb = JSON.stringify(b);
-      if (ja !== jb) diferencias.push(`${ruta}\n    antes: ${ja}\n    ahora: ${jb}`);
-    };
+    delete referencia.generada;
+    delete actual.generada;
 
-    for (const clave of Object.keys(referencia)) {
-      if (clave === 'generada') continue;
-      comparar(clave, referencia[clave], actual[clave]);
-    }
-    const nuevas = Object.keys(actual).filter(k => !(k in referencia) && k !== 'generada');
-    nuevas.forEach(k => diferencias.push(`${k} (apartado nuevo)`));
+    const cambios = diferencias(referencia, actual);
 
-    expect(diferencias,
+    expect(cambios,
       '\nREGRESIÓN: el sitio cambió respecto de la instantánea.\n' +
       'Si el cambio es intencional, actualízala con "npm run instantanea" y comitea tests/instantanea.json.\n'
     ).toEqual([]);
