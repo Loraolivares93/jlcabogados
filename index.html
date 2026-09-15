@@ -154,7 +154,7 @@ h2.tit{font-size:clamp(30px,3.9vw,50px);letter-spacing:-.024em}
 
 .idio{position:absolute;right:var(--gut);display:flex;align-items:center;gap:5px;
   white-space:nowrap}
-.idio button{background:none;border:0;padding:6px 2px;cursor:pointer;
+.idio button{background:none;border:0;padding:6px 5px;cursor:pointer;
   font-family:var(--display);font-size:10px;font-weight:500;letter-spacing:.18em;
   color:#7F93A8;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
 .idio button:hover{color:#DCE5EE}
@@ -374,7 +374,8 @@ html.panel-abierto{overflow:hidden}
 .publi .medio b{display:block;font-weight:500;color:var(--marino)}
 .publi h3{font-size:clamp(17px,1.5vw,20px);font-weight:500;letter-spacing:-.012em;
   line-height:1.35}
-.publi h3 a{border-bottom:1px solid var(--claro);padding-bottom:2px}
+.publi h3 a{display:inline-block;border-bottom:1px solid var(--claro);
+  padding-bottom:2px;padding-top:2px}
 .publi:hover h3 a,.publi h3 a:hover{border-bottom-color:var(--acento)}
 .publi h3 a::after{content:"";display:inline-block;width:.6em;height:.6em;
   margin-left:.4em;vertical-align:baseline;background:currentColor;opacity:.55;
@@ -402,8 +403,9 @@ html.panel-abierto{overflow:hidden}
   padding:15px 0;border-bottom:1px solid var(--linea)}
 .dato dt{font-family:var(--display);font-size:11.5px;font-weight:500;
   letter-spacing:.15em;text-transform:uppercase;color:var(--gris-2);padding-top:5px}
-.dato dd{margin:0;font-size:16px;line-height:1.55;font-weight:300;color:var(--tinta)}
-.dato dd a{border-bottom:1px solid var(--claro)}
+.dato dd{margin:0;font-size:16px;line-height:1.55;font-weight:300;color:var(--tinta);
+  overflow-wrap:anywhere}
+.dato dd a{display:inline-block;padding-block:3px;border-bottom:1px solid var(--claro)}
 .dato dd a.mapa{display:inline-block;margin-top:7px;font-size:14px;
   font-family:var(--display);letter-spacing:.02em;color:var(--marino)}
 .dato dd a:hover{border-bottom-color:var(--marino)}
@@ -433,7 +435,7 @@ html.panel-abierto{overflow:hidden}
 .firma-pie{width:min(320px,74vw);color:#fff;margin:0 auto 18px}
 .pie-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);
   max-width:640px;margin:0 auto}
-.pie h4{font-family:var(--display);font-size:10.5px;font-weight:500;letter-spacing:.16em;
+.pie h3{font-family:var(--display);font-size:10.5px;font-weight:500;letter-spacing:.16em;
   text-transform:uppercase;color:#7F93A8;margin-bottom:14px}
 .pie-col a{display:block;padding:10px 0;color:#CBD6E1;line-height:1.5}
 .pie-col a:hover{color:#fff}
@@ -1452,7 +1454,7 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
 4 163 16 245 27 258 34 387 47 464 48 40 0 119 6 175 14 55 8 155 17 221 21
 66 4 163 13 215 21 52 8 191 19 308 24 117 5 218 12 224 16 20 13 263 21 564
 20 l301 -1 41 -29z"/>
-</g></defs><symbol id="firma" viewBox="0 0 4960 1408"><use href="#firma-g"></use></symbol><symbol id="firma-sola" viewBox="0 0 4960 1040"><use href="#firma-g"></use></symbol></svg>
+</g></defs><symbol id="firma-sim" viewBox="0 0 4960 1408"><use href="#firma-g"></use></symbol><symbol id="firma-sola" viewBox="0 0 4960 1040"><use href="#firma-g"></use></symbol></svg>
 
 <header class="nav oscuro">
   <div class="nav-top">
@@ -1771,7 +1773,7 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
     </div>
     <div class="pie-cols">
     <div class="pie-col">
-      <h4 data-t="pieh1">Secciones</h4>
+      <h3 data-t="pieh1">Secciones</h3>
       <a href="#firma" data-t="pl1">La firma</a>
       <a href="#areas" data-t="pl2">Áreas de práctica</a>
       <a href="#abogados" data-t="pl3">Abogados</a>
@@ -1779,7 +1781,7 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
       <a href="#contacto" data-t="pl4">Contacto</a>
     </div>
     <div class="pie-col">
-      <h4 data-t="pieh2">Oficina</h4>
+      <h3 data-t="pieh2">Oficina</h3>
       <a href="#contacto" data-t="pd1">C. Centro Olímpico No. 256<br>Santo Domingo, R. D.</a>
       <a href="tel:+18095664065">(809) 566-4065</a>
       <a href="mailto:info@jlcabogados.com">info@jlcabogados.com</a>

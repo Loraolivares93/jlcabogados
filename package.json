@@ -1,0 +1,31 @@
+{
+  "name": "jlcabogados",
+  "version": "1.0.0",
+  "description": "Sitio web de J. Lora Castillo & Asociados. Pagina estatica (index.html) publicada con GitHub Pages.",
+  "scripts": {
+    "test": "playwright test",
+    "test:critico": "playwright test --grep @critico",
+    "test:publicado": "playwright test",
+    "test:ui": "playwright test --ui",
+    "informe": "playwright show-report",
+    "instantanea": "node scripts/instantanea.mjs",
+    "vigilar": "node scripts/vigilar.mjs",
+    "auditoria": "node auditoria.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Loraolivares93/jlcabogados.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Loraolivares93/jlcabogados/issues"
+  },
+  "homepage": "https://github.com/Loraolivares93/jlcabogados#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  },
+  "private": true
+}
