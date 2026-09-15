@@ -30,15 +30,20 @@ module.exports = defineConfig({
   // Los mismos casos se ejecutan en tres tamaños: ahí es donde aparecen
   // los problemas de espaciado y desbordamiento.
   projects: [
-    { name: 'movil',     use: { ...devices['Pixel 7'] } },
-    { name: 'tableta',   use: { ...devices['iPad (gen 7)'] } },
+    // browserName explícito en los tres: el perfil de iPad usa WebKit por
+    // defecto y la instalación solo trae Chromium, así que sin esto el
+    // proyecto entero falla con "Executable doesn't exist".
+    { name: 'movil',      use: { ...devices['Pixel 7'], browserName: 'chromium' } },
+    { name: 'tableta',    use: { ...devices['iPad (gen 7)'], browserName: 'chromium' } },
     { name: 'escritorio', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } } },
   ],
 
   webServer: ES_LOCAL ? {
-    command: 'npx --yes http-server -p 8080 -s .',
+    command: 'node scripts/servidor.mjs 8080',
     url: 'http://127.0.0.1:8080',
     reuseExistingServer: !process.env.CI,
     timeout: 60_000,
+    stdout: 'ignore',
+    stderr: 'pipe',
   } : undefined,
 });
