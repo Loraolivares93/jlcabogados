@@ -16,8 +16,7 @@ const esLocal = destino.includes('127.0.0.1') || destino.includes('localhost');
 
 let servidor;
 if (esLocal) {
-  servidor = spawn('npx', ['--yes', 'http-server', '-p', '8080', '-s', '.'],
-    { stdio: 'ignore', shell: true });
+  servidor = spawn(process.execPath, ['scripts/servidor.mjs', '8080'], { stdio: 'ignore' });
   // Espera a que responda.
   for (let i = 0; i < 40; i++) {
     try { await fetch(destino); break; } catch { await new Promise(r => setTimeout(r, 500)); }
