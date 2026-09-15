@@ -1,0 +1,345 @@
+{
+  "espanol": {
+    "titulo": "J. Lora Castillo & Asociados · Oficina de abogados en Santo Domingo",
+    "h1": "Ejerciendo el derecho en la República Dominicana desde 1991",
+    "secciones": [
+      "inicio",
+      "firma",
+      "areas",
+      "abogados",
+      "publicaciones",
+      "contacto"
+    ],
+    "encabezados2": [
+      "De una firma de litigio a una práctica completa",
+      "En qué trabaja la oficina",
+      "Quiénes responden",
+      "Lo que escribimos y lo que se publica sobre los casos",
+      "La oficina",
+      "Cuéntenos su caso"
+    ],
+    "menu": [
+      {
+        "texto": "La firma",
+        "destino": "#firma"
+      },
+      {
+        "texto": "Áreas de práctica",
+        "destino": "#areas"
+      },
+      {
+        "texto": "Abogados",
+        "destino": "#abogados"
+      },
+      {
+        "texto": "Publicaciones",
+        "destino": "#publicaciones"
+      },
+      {
+        "texto": "Contacto",
+        "destino": "#contacto"
+      }
+    ],
+    "pie": [
+      {
+        "texto": "La firma",
+        "destino": "#firma"
+      },
+      {
+        "texto": "Áreas de práctica",
+        "destino": "#areas"
+      },
+      {
+        "texto": "Abogados",
+        "destino": "#abogados"
+      },
+      {
+        "texto": "Publicaciones",
+        "destino": "#publicaciones"
+      },
+      {
+        "texto": "Contacto",
+        "destino": "#contacto"
+      },
+      {
+        "texto": "C. Centro Olímpico No. 256Santo Domingo, R. D.",
+        "destino": "#contacto"
+      },
+      {
+        "texto": "(809) 566-4065",
+        "destino": "tel:+18095664065"
+      },
+      {
+        "texto": "info@jlcabogados.com",
+        "destino": "mailto:info@jlcabogados.com"
+      }
+    ],
+    "areasPractica": [
+      "Derecho Corporativo",
+      "Derecho Comercial",
+      "Reestructuración Mercantil",
+      "Derecho Laboral",
+      "Derecho Inmobiliario",
+      "Derecho Civil",
+      "Litigios y Arbitraje",
+      "Derecho Penal"
+    ],
+    "abogados": [
+      "Dr. Jorge Lora Castillo",
+      "Lic. Jorge Lora Olivares"
+    ],
+    "publicaciones": [
+      {
+        "titulo": "Reflexiones sobre la nueva casación",
+        "destino": "https://acento.com.do/opinion/reflexiones-sobre-la-nueva-casacionj-9649939.html"
+      },
+      {
+        "titulo": "Privatización del Derecho Penal",
+        "destino": "https://acento.com.do/opinion/privatizacion-del-derecho-penal-9607372.html"
+      },
+      {
+        "titulo": "La justicia dominicana: entre la retórica del cambio y la realidad del colapso",
+        "destino": "https://acento.com.do/opinion/la-justicia-dominicana-entre-la-retorica-del-cambio-y-la-realidad-del-colapso-9556309.html"
+      },
+      {
+        "titulo": "El poder de la DIGESETT desde el imaginario ciudadano",
+        "destino": "https://acento.com.do/opinion/el-poder-de-la-digesett-desde-el-imaginario-ciudadano-9498761.html"
+      },
+      {
+        "titulo": "Política y derroche: un país atrapado en su propio ciclo",
+        "destino": "https://acento.com.do/opinion/politica-y-derroche-un-pais-atrapado-en-su-propio-ciclo-9469922.html"
+      },
+      {
+        "titulo": "Muerte del referimiento en el proceso civil dominicano",
+        "destino": "https://acento.com.do/opinion/muerte-del-referimiento-en-el-proceso-civil-dominicano-9233835.html"
+      },
+      {
+        "titulo": "Grupo Paceo rechaza acusaciones de estafa inmobiliaria en La Altagracia",
+        "destino": "https://acento.com.do/actualidad/grupo-paceo-s-r-rechaza-acusaciones-de-estafa-inmobiliaria-en-la-altagracia-9444336.html"
+      },
+      {
+        "titulo": "Empresario interpone querella contra Cap Cana",
+        "destino": "https://hoy.com.do/el-pais/empresario-interpone-querella-contra-cap-cana_849492.html"
+      },
+      {
+        "titulo": "Tribunal Constitucional se reserva fallo sobre las acciones contra las audiencias virtuales",
+        "destino": "https://www.diariolibre.com/actualidad/justicia/tribunal-constitucional-se-reserva-fallo-sobre-acciones-en-contra-de-las-audiencias-virtuales-JD22303864"
+      },
+      {
+        "titulo": "TC conocerá acción de inconstitucionalidad contra las resoluciones de audiencias virtuales",
+        "destino": "https://elnacional.com.do/tc-conocera-accion-de-inconstitucionalidad-contra-resoluciones-que-disponen-conocimiento-audiencias-virtuales/"
+      },
+      {
+        "titulo": "Lora Castillo rechaza perpetuar la virtualidad en los tribunales",
+        "destino": "https://www.elcaribe.com.do/panorama/pais/lora-castillo-rechaza-perpetuar-virtualidad-en-los-tribunales/"
+      }
+    ],
+    "contacto": [
+      {
+        "rotulo": "Dirección",
+        "valor": "C. Centro Olímpico No. 256Santo Domingo, República DominicanaVer en el mapa",
+        "enlace": "https://www.google.com/maps/search/?api=1&query=18.45953284610695%2C-69.95491018201056"
+      },
+      {
+        "rotulo": "Teléfono",
+        "valor": "(809) 566-4065",
+        "enlace": "tel:+18095664065"
+      },
+      {
+        "rotulo": "WhatsApp",
+        "valor": "(829) 707-7773",
+        "enlace": "https://wa.me/18297077773"
+      },
+      {
+        "rotulo": "Correo",
+        "valor": "info@jlcabogados.com",
+        "enlace": "mailto:info@jlcabogados.com"
+      },
+      {
+        "rotulo": "Horario",
+        "valor": "Lunes a viernes, 8:00 a. m. – 6:00 p. m.Sábados, 9:00 a. m. – 1:00 p. m.",
+        "enlace": null
+      },
+      {
+        "rotulo": "Idiomas",
+        "valor": "Español e inglés",
+        "enlace": null
+      },
+      {
+        "rotulo": "En ejercicio",
+        "valor": "Desde 1991 · 35 años",
+        "enlace": null
+      }
+    ],
+    "externos": [
+      "https://acento.com.do/actualidad/grupo-paceo-s-r-rechaza-acusaciones-de-estafa-inmobiliaria-en-la-altagracia-9444336.html",
+      "https://acento.com.do/opinion/el-poder-de-la-digesett-desde-el-imaginario-ciudadano-9498761.html",
+      "https://acento.com.do/opinion/la-justicia-dominicana-entre-la-retorica-del-cambio-y-la-realidad-del-colapso-9556309.html",
+      "https://acento.com.do/opinion/muerte-del-referimiento-en-el-proceso-civil-dominicano-9233835.html",
+      "https://acento.com.do/opinion/politica-y-derroche-un-pais-atrapado-en-su-propio-ciclo-9469922.html",
+      "https://acento.com.do/opinion/privatizacion-del-derecho-penal-9607372.html",
+      "https://acento.com.do/opinion/reflexiones-sobre-la-nueva-casacionj-9649939.html",
+      "https://elnacional.com.do/tc-conocera-accion-de-inconstitucionalidad-contra-resoluciones-que-disponen-conocimiento-audiencias-virtuales/",
+      "https://hoy.com.do/el-pais/empresario-interpone-querella-contra-cap-cana_849492.html",
+      "https://wa.me/18297077773",
+      "https://www.diariolibre.com/actualidad/justicia/tribunal-constitucional-se-reserva-fallo-sobre-acciones-en-contra-de-las-audiencias-virtuales-JD22303864",
+      "https://www.elcaribe.com.do/panorama/pais/lora-castillo-rechaza-perpetuar-virtualidad-en-los-tribunales/",
+      "https://www.google.com/maps/search/?api=1&query=18.45953284610695%2C-69.95491018201056"
+    ],
+    "telefonos": [
+      "tel:+18095664065",
+      "tel:+18095664065",
+      "tel:+18095664065",
+      "tel:+18095664065",
+      "tel:+18095664065",
+      "tel:+18098903023",
+      "tel:+18297077773"
+    ],
+    "correos": [
+      "mailto:info@jlcabogados.com",
+      "mailto:info@jlcabogados.com",
+      "mailto:info@jlcabogados.com",
+      "mailto:info@jlcabogados.com",
+      "mailto:loracastillo@jlcabogados.com",
+      "mailto:loraolivares@jlcabogados.com"
+    ],
+    "clavesTraduccion": [
+      "a1",
+      "a1d",
+      "a2",
+      "a2d",
+      "a3",
+      "a3d",
+      "a4",
+      "a4d",
+      "a5",
+      "a5d",
+      "a6",
+      "a6d",
+      "a7",
+      "a7d",
+      "a8",
+      "a8d",
+      "ab1bio",
+      "ab1mat",
+      "ab1rol",
+      "ab2bio",
+      "ab2mat",
+      "ab2rol",
+      "ag1",
+      "ag2",
+      "ag3",
+      "areascta",
+      "cerrar",
+      "cieb1",
+      "cieb2",
+      "ciep",
+      "cietit",
+      "copy",
+      "d1",
+      "d1d",
+      "d2",
+      "d3",
+      "d4",
+      "d4d",
+      "d5",
+      "d5d",
+      "d6",
+      "d6d",
+      "f1",
+      "f1d",
+      "f2",
+      "f2d",
+      "f3",
+      "f3d",
+      "f4",
+      "f4d",
+      "g1",
+      "g2",
+      "h1",
+      "hcta",
+      "hi1",
+      "hi1d",
+      "hi2",
+      "hi2d",
+      "hi3",
+      "hi3d",
+      "hsub",
+      "indice",
+      "lblcel",
+      "lblcel2",
+      "lblcorreo",
+      "lblcorreo2",
+      "legal2",
+      "membrete",
+      "n3a",
+      "n4a",
+      "n5a",
+      "n6a",
+      "n7a",
+      "nav1",
+      "nav2",
+      "nav3",
+      "nav4",
+      "nav5",
+      "pd1",
+      "pieh1",
+      "pieh2",
+      "piep",
+      "pl1",
+      "pl2",
+      "pl3",
+      "pl4",
+      "pl5",
+      "s1ent",
+      "s1p1",
+      "s1p2",
+      "s1p3",
+      "s1p4",
+      "s1rot",
+      "s1tit",
+      "s2ent",
+      "s2rot",
+      "s2tit",
+      "s3ent",
+      "s3rot",
+      "s3tit",
+      "s4ent",
+      "s4rot",
+      "s4tit",
+      "s5ent",
+      "s5rot",
+      "s5tit",
+      "saltar"
+    ],
+    "datosEstructurados": {
+      "tipo": "LegalService",
+      "nombre": "J. Lora Castillo & Asociados",
+      "fundacion": "1991",
+      "telefono": "+1-809-566-4065"
+    },
+    "meta": {
+      "descripcion": "Oficina de abogados en el Distrito Nacional, ejerciendo desde 1991. Derecho corporativo, inmobiliario, litigios y arbitraje, laboral, penal, comercial, reestructuración mercantil y civil.",
+      "og": "Ejerciendo el derecho en la República Dominicana desde 1991. Asesoría y litigio para empresas, instituciones y familias."
+    }
+  },
+  "ingles": {
+    "h1": "Practicing law in the Dominican Republic since 1991",
+    "menu": [
+      "The firm",
+      "Practice areas",
+      "Attorneys",
+      "Publications",
+      "Contact"
+    ],
+    "encabezados2": [
+      "From a litigation practice to a full-service firm",
+      "What the firm works on",
+      "Who answers",
+      "What we write and what the press reports on our cases",
+      "The office",
+      "Tell us about your case"
+    ]
+  },
+  "generada": "2026-09-15"
+}
