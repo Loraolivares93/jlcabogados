@@ -22,10 +22,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Barlow:wght@300;400;500&display=swap">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Barlow:wght@300;400;500&display=swap">
-
 <style>
 /* ============================================================
    J. LORA CASTILLO & ASOCIADOS — versión 6
@@ -39,7 +35,7 @@
   --tinta:#1A1A18;
   --tinta-2:#45443F;
   --gris:#6E6B64;
-  --gris-2:#A29D94;
+  --gris-2:#6B6459;
   --marino:#0E2B45;
   --marino-osc:#091A2B;
   --papel:#FFFFFF;
@@ -48,6 +44,9 @@
   --linea-fuerte:#CFC8BA;
   --linea-b:rgba(255,255,255,.18);
   --claro:#C6BFB2;
+
+  --acento:#7A5C28;
+  --acento-osc:#C6A15B;
 
   --display:"Archivo","Helvetica Neue",Arial,sans-serif;
   --texto:"Barlow","Helvetica Neue",Arial,sans-serif;
@@ -70,6 +69,11 @@ a{color:inherit;text-decoration:none}
 p{margin:0}
 h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:400;
   letter-spacing:-.02em;line-height:1.08;text-wrap:balance}
+.saltar{position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--marino-osc);color:#fff;padding:13px 22px;
+  font-family:var(--display);font-size:12px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase}
+.saltar:focus{position:fixed;left:16px;top:16px}
 :focus-visible{outline:2px solid #2E6DA8;outline-offset:3px}
 .oscuro :focus-visible{outline-color:#fff}
 ::selection{background:var(--marino);color:#fff}
@@ -84,7 +88,7 @@ section[id],main[id]{scroll-margin-top:76px}
 .tenue+.sec,.sec+.tenue{border-top:0}
 
 /* microrrótulo: mayúsculas espaciadas — el único recurso "de firma" */
-.rot{font-family:var(--display);font-size:11px;font-weight:500;
+.rot{font-family:var(--display);font-size:11.5px;font-weight:500;
   letter-spacing:.17em;text-transform:uppercase;color:var(--gris-2);
   margin:0 0 26px}
 h2.tit{font-size:clamp(30px,3.9vw,50px);letter-spacing:-.024em}
@@ -154,7 +158,7 @@ h2.tit{font-size:clamp(30px,3.9vw,50px);letter-spacing:-.024em}
   font-family:var(--display);font-size:10px;font-weight:500;letter-spacing:.18em;
   color:#7F93A8;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
 .idio button:hover{color:#DCE5EE}
-.idio button.on{color:#fff;border-bottom-color:#7FA6CB}
+.idio button.on{color:#fff;border-bottom-color:var(--acento-osc)}
 .idio i{font-style:normal;color:#4A6076;font-size:10px}
 
 @media(max-width:1080px){
@@ -163,7 +167,6 @@ h2.tit{font-size:clamp(30px,3.9vw,50px);letter-spacing:-.024em}
   .menu .cta{padding:10px 18px;letter-spacing:.16em}
 }
 @media(max-width:900px){
-  .idio{display:none}
   .menu a:not(.cta){letter-spacing:.12em;font-size:10px}
   .menu{gap:16px}
 }
@@ -199,6 +202,7 @@ html.panel-abierto{overflow:hidden}
   .menu a:not(.cta){display:none}
   .btn-indice{display:flex}
   .logo-mini{display:none}
+  .nav-bot .idio{display:none}
 }
 @media(min-width:681px){.panel{display:none}}
 @media(max-width:560px){
@@ -206,7 +210,6 @@ html.panel-abierto{overflow:hidden}
   .nav-top{height:60px}
   .nav-bot{height:50px}
   .iso-nav{height:26px}.firma-nav{height:27px}.barrita{height:26px}
-  .idio{display:none}
   .logo-mini .iso{height:21px}
 }
 
@@ -247,8 +250,8 @@ html.panel-abierto{overflow:hidden}
 .btn{font-family:var(--display);font-size:12px;font-weight:500;letter-spacing:.13em;
   text-transform:uppercase;padding:15px 28px;display:inline-block;
   border:1px solid transparent;transition:background .18s,color .18s,border-color .18s}
-.btn-solido{background:#fff;color:var(--marino);border-color:#fff}
-.btn-solido:hover{background:#D9E3ED}
+.btn-solido{background:var(--acento-osc);color:var(--marino-osc);border-color:var(--acento-osc)}
+.btn-solido:hover{background:#D8B872;border-color:#D8B872}
 .btn-linea{border:1px solid rgba(255,255,255,.42);color:#fff}
 .btn-linea:hover{border-color:#fff;background:rgba(255,255,255,.09)}
 .btn-osc{background:var(--marino);color:#fff}
@@ -300,7 +303,12 @@ html.panel-abierto{overflow:hidden}
 }
 
 /* ---------- áreas de práctica: lista con filetes ---------- */
-.areas{margin-top:clamp(30px,3.6vw,48px);border-top:1px solid var(--linea-fuerte)}
+.areas{margin-top:0}
+.areas-pie{margin-top:clamp(26px,3.2vw,38px);text-align:center}
+.areas-pie a{font-family:var(--display);font-size:15px;letter-spacing:.01em;
+  color:var(--marino);border-bottom:1px solid var(--claro);padding-bottom:3px;
+  transition:border-color .18s,color .18s}
+.areas-pie a:hover{color:var(--acento);border-bottom-color:var(--acento)}
 .area{display:grid;grid-template-columns:minmax(210px,1fr) minmax(0,1.9fr);
   gap:clamp(18px,3vw,56px);padding:28px 16px;margin-inline:-16px;
   border-bottom:1px solid var(--linea);align-items:baseline;
@@ -315,7 +323,7 @@ html.panel-abierto{overflow:hidden}
 .area h3{font-size:clamp(19px,1.75vw,23px);font-weight:500;letter-spacing:-.015em;
   color:var(--tinta)}
 .area .desc{font-size:16px;line-height:1.66;color:var(--tinta-2);font-weight:300}
-.area .ley{display:block;margin-top:10px;font-family:var(--display);font-size:11px;
+.area .ley{display:block;margin-top:10px;font-family:var(--display);font-size:11.5px;
   font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gris-2)}
 @media(max-width:820px){
   .area{grid-template-columns:1fr;gap:10px}
@@ -327,13 +335,13 @@ html.panel-abierto{overflow:hidden}
   gap:clamp(18px,3vw,50px);padding:clamp(28px,3.4vw,40px) 0;
   border-bottom:1px solid var(--linea)}
 .abogado h3{font-size:clamp(22px,2.1vw,28px);font-weight:500;letter-spacing:-.02em}
-.abogado .rol{margin-top:9px;font-family:var(--display);font-size:11px;font-weight:500;
+.abogado .rol{margin-top:9px;font-family:var(--display);font-size:11.5px;font-weight:500;
   letter-spacing:.14em;text-transform:uppercase;color:var(--gris-2)}
 .abogado .bio{color:var(--tinta-2);font-weight:300}
 .abogado .mat{margin-top:14px;font-size:15px;color:var(--gris)}
 .abogado .via{margin-top:18px;display:grid;gap:7px;font-size:15.5px}
 .abogado .via div{display:flex;gap:12px;align-items:baseline}
-.abogado .via b{font-family:var(--display);font-size:10.5px;font-weight:500;
+.abogado .via b{font-family:var(--display);font-size:11.5px;font-weight:500;
   letter-spacing:.15em;text-transform:uppercase;color:var(--gris-2);
   min-width:62px;flex:none}
 .abogado .via a{border-bottom:1px solid var(--claro);padding-bottom:1px}
@@ -349,7 +357,7 @@ html.panel-abierto{overflow:hidden}
 /* ---------- publicaciones y prensa ---------- */
 .grupo{margin-top:clamp(30px,3.6vw,48px)}
 .grupo+.grupo{margin-top:clamp(38px,4.4vw,60px)}
-.subrot{font-family:var(--display);font-size:11px;font-weight:500;
+.subrot{font-family:var(--display);font-size:11.5px;font-weight:500;
   letter-spacing:.17em;text-transform:uppercase;color:var(--gris-2);
   padding-bottom:14px;border-bottom:1px solid var(--linea-fuerte)}
 .publi{display:grid;grid-template-columns:150px minmax(0,2.3fr) minmax(150px,1fr);
@@ -361,13 +369,18 @@ html.panel-abierto{overflow:hidden}
   transition:transform .3s cubic-bezier(.22,.61,.36,1)}
 .publi:hover::before{transform:scaleY(1)}
 .publi:hover{background:#FBF9F5}
-.publi .medio{font-family:var(--display);font-size:10.5px;font-weight:500;
+.publi .medio{font-family:var(--display);font-size:11.5px;font-weight:500;
   letter-spacing:.15em;text-transform:uppercase;color:var(--gris-2);line-height:1.5}
 .publi .medio b{display:block;font-weight:500;color:var(--marino)}
 .publi h3{font-size:clamp(17px,1.5vw,20px);font-weight:500;letter-spacing:-.012em;
   line-height:1.35}
-.publi h3 a{border-bottom:1px solid transparent;padding-bottom:2px}
-.publi:hover h3 a,.publi h3 a:hover{border-bottom-color:var(--claro)}
+.publi h3 a{border-bottom:1px solid var(--claro);padding-bottom:2px}
+.publi:hover h3 a,.publi h3 a:hover{border-bottom-color:var(--acento)}
+.publi h3 a::after{content:"";display:inline-block;width:.6em;height:.6em;
+  margin-left:.4em;vertical-align:baseline;background:currentColor;opacity:.55;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M9 7h8v8'/%3E%3C/svg%3E") no-repeat center/contain;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M9 7h8v8'/%3E%3C/svg%3E") no-repeat center/contain}
+.publi:hover h3 a::after,.publi h3 a:hover::after{opacity:1;color:var(--acento)}
 .publi .autor{font-size:15px;color:var(--gris);line-height:1.5}
 @media(max-width:860px){
   .publi{grid-template-columns:1fr;gap:8px;align-items:start}
@@ -387,7 +400,7 @@ html.panel-abierto{overflow:hidden}
 .datos{margin:0;border-top:1px solid var(--linea-fuerte)}
 .dato{display:grid;grid-template-columns:130px minmax(0,1fr);gap:20px;
   padding:15px 0;border-bottom:1px solid var(--linea)}
-.dato dt{font-family:var(--display);font-size:10.5px;font-weight:500;
+.dato dt{font-family:var(--display);font-size:11.5px;font-weight:500;
   letter-spacing:.15em;text-transform:uppercase;color:var(--gris-2);padding-top:5px}
 .dato dd{margin:0;font-size:16px;line-height:1.55;font-weight:300;color:var(--tinta)}
 .dato dd a{border-bottom:1px solid var(--claro)}
@@ -422,7 +435,7 @@ html.panel-abierto{overflow:hidden}
   max-width:640px;margin:0 auto}
 .pie h4{font-family:var(--display);font-size:10.5px;font-weight:500;letter-spacing:.16em;
   text-transform:uppercase;color:#7F93A8;margin-bottom:14px}
-.pie-col a{display:block;padding:4px 0;color:#CBD6E1;line-height:1.5}
+.pie-col a{display:block;padding:10px 0;color:#CBD6E1;line-height:1.5}
 .pie-col a:hover{color:#fff}
 .legal{border-top:1px solid rgba(255,255,255,.12)}
 #year,.anios{font-weight:inherit}
@@ -431,7 +444,7 @@ html.panel-abierto{overflow:hidden}
   font-size:13px;color:#6F8398}
 @media(max-width:460px){.pie-cols{grid-template-columns:1fr;gap:30px}}
 .reveal{opacity:0;transform:translateY(14px);
-  transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+  transition:opacity .45s cubic-bezier(.22,.61,.36,1),transform .45s cubic-bezier(.22,.61,.36,1)}
 .reveal.visto{opacity:1;transform:none}
 @media(max-width:560px){
   .hero h1{font-size:29px;line-height:1.13;letter-spacing:-.02em;max-width:none}
@@ -1490,7 +1503,9 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
   </div>
 </div>
 
-<main id="inicio">
+<a class="saltar" href="#inicio" data-t="saltar">Saltar al contenido</a>
+
+<main id="inicio" tabindex="-1">
 
   <!-- ===== PORTADA ===== -->
   <section class="hero oscuro">
@@ -1509,10 +1524,10 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
 
   <div class="franja oscuro">
     <dl class="franja-in">
-      <div class="fdato"><dt data-t="f1">Oficina</dt><dd data-t="f1d">C. Centro Olímpico No. 256<br>Santo Domingo, R. D.</dd></div>
-      <div class="fdato"><dt data-t="f2">Teléfono</dt><dd><a href="tel:+18095664065">(809) 566-4065</a></dd></div>
-      <div class="fdato"><dt data-t="f3">Correo</dt><dd><a href="mailto:info@jlcabogados.com">info@jlcabogados.com</a></dd></div>
-      <div class="fdato"><dt data-t="f4">Horario</dt><dd data-t="f4d">Lun–Vie 8:00 a. m. – 6:00 p. m.<br>Sáb 9:00 a. m. – 1:00 p. m.</dd></div>
+      <div class="fdato"><dt data-t="f1">En ejercicio</dt><dd data-t="f1d"><b class="anios">37</b> años<br>desde 1989</dd></div>
+      <div class="fdato"><dt data-t="f2">Instancias</dt><dd data-t="f2d">Hasta la Suprema Corte<br>y el Tribunal Constitucional</dd></div>
+      <div class="fdato"><dt data-t="f3">Áreas de práctica</dt><dd data-t="f3d">8 materias, de lo<br>corporativo a lo penal</dd></div>
+      <div class="fdato"><dt data-t="f4">Idiomas</dt><dd data-t="f4d">Español e inglés<br>para clientes extranjeros</dd></div>
     </dl>
   </div>
 
@@ -1559,22 +1574,32 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
         </div>
       </div>
       <div class="areas">
-        <article class="area"><h3 data-t="a1">Derecho Corporativo</h3>
-          <div class="cuerpo"><p class="desc" data-t="a1d">Constitución de SRL, SA y EIRL; asambleas y actas; acuerdos de accionistas; fusiones, escisiones y reestructuraciones; due diligence legal.</p></div></article>
-        <article class="area"><h3 data-t="a2">Derecho Inmobiliario</h3>
-          <div class="cuerpo"><p class="desc" data-t="a2d">Compraventa y venta condicional, deslinde y saneamiento, hipotecas y su cancelación, arrendamientos, litis sobre derechos registrados.</p></div></article>
-        <article class="area"><h3 data-t="a3">Litigios y Arbitraje</h3>
-          <div class="cuerpo"><p class="desc" data-t="a3d">Demandas y defensas en primera instancia, apelación, casación ante la Suprema Corte y amparo; arbitraje comercial institucional.</p></div></article>
-        <article class="area"><h3 data-t="a4">Derecho Laboral</h3>
-          <div class="cuerpo"><p class="desc" data-t="a4d">Contratos y reglamentos internos, cálculo de prestaciones, desahucio y dimisión, inspecciones, seguridad social y defensa ante juzgados de trabajo.</p></div></article>
-        <article class="area"><h3 data-t="a5">Derecho Penal</h3>
-          <div class="cuerpo"><p class="desc" data-t="a5d">Defensa de imputados, querellas con constitución en actor civil, recursos; y programas de cumplimiento penal para personas jurídicas.</p></div></article>
-        <article class="area"><h3 data-t="a6">Derecho Comercial</h3>
-          <div class="cuerpo"><p class="desc" data-t="a6d">Contratos de distribución y suministro, registro y defensa de marcas, competencia desleal, protección al consumidor.</p></div></article>
-        <article class="area"><h3 data-t="a7">Reestructuración Mercantil</h3>
-          <div class="cuerpo"><p class="desc" data-t="a7d">Solicitud y defensa de procesos de reestructuración, verificación y defensa de créditos, planes de reestructuración, liquidación judicial y representación de acreedores.</p></div></article>
-        <article class="area"><h3 data-t="a8">Derecho Civil</h3>
-          <div class="cuerpo"><p class="desc" data-t="a8d">Contratos y obligaciones, responsabilidad civil, sucesiones y particiones, divorcios y asuntos de familia.</p></div></article>
+        <div class="grupo">
+          <p class="subrot" data-t="ag1">Empresa</p>
+          <article class="area"><h3 data-t="a1">Derecho Corporativo</h3>
+            <div class="cuerpo"><p class="desc" data-t="a1d">Constitución de SRL, SA y EIRL; asambleas y actas; acuerdos de accionistas; fusiones, escisiones y reestructuraciones; due diligence legal.</p></div></article>
+          <article class="area"><h3 data-t="a6">Derecho Comercial</h3>
+            <div class="cuerpo"><p class="desc" data-t="a6d">Contratos de distribución y suministro, registro y defensa de marcas, competencia desleal, protección al consumidor.</p></div></article>
+          <article class="area"><h3 data-t="a7">Reestructuración Mercantil</h3>
+            <div class="cuerpo"><p class="desc" data-t="a7d">Solicitud y defensa de procesos de reestructuración, verificación y defensa de créditos, planes de reestructuración, liquidación judicial y representación de acreedores.</p></div></article>
+          <article class="area"><h3 data-t="a4">Derecho Laboral</h3>
+            <div class="cuerpo"><p class="desc" data-t="a4d">Contratos y reglamentos internos, cálculo de prestaciones, desahucio y dimisión, inspecciones, seguridad social y defensa ante juzgados de trabajo.</p></div></article>
+        </div>
+        <div class="grupo">
+          <p class="subrot" data-t="ag2">Patrimonio y familia</p>
+          <article class="area"><h3 data-t="a2">Derecho Inmobiliario</h3>
+            <div class="cuerpo"><p class="desc" data-t="a2d">Compraventa y venta condicional, deslinde y saneamiento, hipotecas y su cancelación, arrendamientos, litis sobre derechos registrados.</p></div></article>
+          <article class="area"><h3 data-t="a8">Derecho Civil</h3>
+            <div class="cuerpo"><p class="desc" data-t="a8d">Contratos y obligaciones, responsabilidad civil, sucesiones y particiones, divorcios y asuntos de familia.</p></div></article>
+        </div>
+        <div class="grupo">
+          <p class="subrot" data-t="ag3">Litigio y defensa</p>
+          <article class="area"><h3 data-t="a3">Litigios y Arbitraje</h3>
+            <div class="cuerpo"><p class="desc" data-t="a3d">Demandas y defensas en primera instancia, apelación, casación ante la Suprema Corte y amparo; arbitraje comercial institucional.</p></div></article>
+          <article class="area"><h3 data-t="a5">Derecho Penal</h3>
+            <div class="cuerpo"><p class="desc" data-t="a5d">Defensa de imputados, querellas con constitución en actor civil, recursos; y programas de cumplimiento penal para personas jurídicas.</p></div></article>
+        </div>
+        <p class="areas-pie"><a href="#contacto" data-t="areascta">¿No sabe bajo cuál cae su asunto? Descríbalo en dos líneas →</a></p>
       </div>
     </div>
   </section>
@@ -1814,7 +1839,7 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
   }
 
   if ('IntersectionObserver' in window){
-    var sel='.enc,.dos>div,.hito,.area,.publi,.abogado,.datos,.cierre-in>div,.pie-marca';
+    var sel='.enc,.dos>div,.hito,.abogado,.datos,.cierre-in>div,.pie-marca';
     var els=[].slice.call(document.querySelectorAll(sel));
     els.forEach(function(e){ e.classList.add('reveal'); });
     var io=new IntersectionObserver(function(entradas){
@@ -1831,9 +1856,11 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
     h1:"Practicing law in the Dominican Republic since 1989",
     hsub:"A law firm in Santo Domingo's National District. We advise companies, institutions and families on what their situation calls for: structuring a business, protecting assets, or representing the client in a dispute.",
     hcta:"Request a consultation",
-    f1:"Office", f1d:"C. Centro Olímpico No. 256<br>Santo Domingo, D. R.",
-    f2:"Phone", f3:"Email",
-    f4:"Hours", f4d:"Mon–Fri 8:00 a.m. – 6:00 p.m.<br>Sat 9:00 a.m. – 1:00 p.m.",
+    f1:"In practice", f1d:"<b class=\"anios\">37</b> years<br>since 1989",
+    f2:"Court levels", f2d:"Up to the Supreme Court<br>and the Constitutional Court",
+    f3:"Practice areas", f3d:"8 areas, from corporate<br>to criminal",
+    f4:"Languages", f4d:"Spanish and English<br>for foreign clients",
+    saltar:"Skip to content",
 
     s1rot:"The firm",
     s1tit:"From a litigation practice to a full-service firm",
@@ -1846,6 +1873,8 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
     hi2:"Full-service practice", hi2d:"Corporate, real estate, litigation, labor, criminal, commercial, restructuring and civil.",
     hi3:"Spanish and English", hi3d:"We regularly serve foreign investors with interests in the country.",
 
+    ag1:"Business", ag2:"Property and family", ag3:"Litigation and defense",
+    areascta:"Not sure where your matter falls? Describe it in two lines →",
     s2rot:"Practice areas",
     s2tit:"What the firm works on",
     s2ent:"If you are not sure where your matter falls, describe it in two lines and we will tell you who should look at it.",
