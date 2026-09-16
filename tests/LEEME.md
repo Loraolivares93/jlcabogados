@@ -47,6 +47,21 @@ Cada caso corre en tres tamaños: **móvil** (Pixel 7), **tableta** (iPad) y
 - `@regresion` — algo cambió respecto de la referencia guardada. Puede ser
   intencional, pero hay que mirarlo.
 
+## Cuidado con el servidor reutilizado
+
+`playwright.config.js` usa `reuseExistingServer` en local: si ya hay algo
+escuchando en el 8080, la suite lo usa en lugar de arrancar el suyo. Eso es
+cómodo, pero si ese servidor quedó vivo desde antes puede estar sirviendo una
+versión anterior del sitio y **la suite dará por buena una página vieja**.
+
+Pasó el 16·09·2026: en local salieron 173 en verde y GitHub encontró 3 fallos
+reales. Ante una discrepancia entre local y CI, lo primero es:
+
+```bash
+pkill -f servidor.mjs   # o cerrar el proceso del 8080
+npm test
+```
+
 ## Regresiones
 
 `tests/instantanea.json` guarda la estructura conocida del sitio: secciones,
