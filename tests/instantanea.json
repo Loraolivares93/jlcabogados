@@ -72,6 +72,14 @@
       {
         "texto": "info@jlcabogados.com",
         "destino": "mailto:info@jlcabogados.com"
+      },
+      {
+        "texto": "«Puerta del Conde»",
+        "destino": "https://commons.wikimedia.org/wiki/File:Puerta_del_Conde_CCSD_09_2018_1629.jpg"
+      },
+      {
+        "texto": "CC BY-SA 4.0",
+        "destino": "https://creativecommons.org/licenses/by-sa/4.0/deed.es"
       }
     ],
     "areasPractica": [
@@ -179,6 +187,8 @@
       "https://acento.com.do/opinion/politica-y-derroche-un-pais-atrapado-en-su-propio-ciclo-9469922.html",
       "https://acento.com.do/opinion/privatizacion-del-derecho-penal-9607372.html",
       "https://acento.com.do/opinion/reflexiones-sobre-la-nueva-casacionj-9649939.html",
+      "https://commons.wikimedia.org/wiki/File:Puerta_del_Conde_CCSD_09_2018_1629.jpg",
+      "https://creativecommons.org/licenses/by-sa/4.0/deed.es",
       "https://elnacional.com.do/tc-conocera-accion-de-inconstitucionalidad-contra-resoluciones-que-disponen-conocimiento-audiencias-virtuales/",
       "https://hoy.com.do/el-pais/empresario-interpone-querella-contra-cap-cana_849492.html",
       "https://wa.me/18297077773",
@@ -237,6 +247,7 @@
       "ciep",
       "cietit",
       "copy",
+      "credfoto",
       "d1",
       "d1d",
       "d2",
@@ -342,5 +353,5 @@
       "Tell us about your case"
     ]
   },
-  "generada": "2026-09-15"
+  "generada": "2026-09-16"
 }

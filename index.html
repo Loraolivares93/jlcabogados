@@ -417,6 +417,16 @@ html.panel-abierto{overflow:hidden}
 .cierre{position:relative;color:#fff;overflow:hidden;
   background:linear-gradient(178deg,#0E2B45 0%,#0B2439 100%);
   padding-block:clamp(58px,7vw,96px)}
+/* Puerta del Conde. Encuadre propio por formato: la seccion es 3,3:1 en
+   escritorio y 0,86:1 en movil, y un solo recorte no puede servir a ambos. */
+.cierre{background-color:var(--marino-osc);background-image:url("img/ancho-1900.webp");
+  background-size:cover;background-position:center;background-repeat:no-repeat}
+@media(min-width:1700px){.cierre{background-image:url("img/ancho-2400.webp")}}
+@media(max-width:1100px) and (min-width:681px){.cierre{background-image:url("img/ancho-1400.webp")}}
+@media(max-width:680px){.cierre{background-image:url("img/movil-1000.webp")}}
+@media(max-width:420px){.cierre{background-image:url("img/movil-700.webp")}}
+.credito-foto{color:var(--claro)}
+.credito-foto a{color:inherit;border-bottom:1px solid rgba(255,255,255,.22)}
 .cierre-iso{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
   width:min(40%,460px);height:auto;opacity:.04;color:#fff;pointer-events:none;
   transform:translate(-50%,-50%) translateZ(0);will-change:transform}
@@ -1796,6 +1806,7 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
     <div class="legal-in">
       <span data-t="copy">© <b id="year">2026</b> J. Lora Castillo &amp; Asociados. Todos los derechos reservados.</span>
       <span data-t="legal2">Términos de uso · Política de privacidad</span>
+      <span class="credito-foto" data-t="credfoto">Fotografía: <a href="https://commons.wikimedia.org/wiki/File:Puerta_del_Conde_CCSD_09_2018_1629.jpg" target="_blank" rel="noopener">«Puerta del Conde»</a>, por Mariordo (Mario Roberto Durán Ortiz), <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Recortada y oscurecida; la versión modificada se publica bajo la misma licencia.</span>
     </div>
   </div>
 </footer>
@@ -1929,6 +1940,7 @@ m-4222 -4163 c38 -26 42 -33 42 -71 0 -27 -11 -65 -30 -103 -16 -33 -34 -80
     pieh1:"Sections", pl1:"The firm", pl2:"Practice areas", pl3:"Attorneys", pl4:"Contact",
     pieh2:"Office", pd1:"C. Centro Olímpico No. 256<br>Santo Domingo, D. R.",
     copy:"© <b id=\"year\">2026</b> J. Lora Castillo &amp; Asociados. All rights reserved.",
+    credfoto:"Photograph: <a href=\"https://commons.wikimedia.org/wiki/File:Puerta_del_Conde_CCSD_09_2018_1629.jpg\" target=\"_blank\" rel=\"noopener\">&laquo;Puerta del Conde&raquo;</a>, by Mariordo (Mario Roberto Durán Ortiz), <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\" target=\"_blank\" rel=\"noopener\">CC BY-SA 4.0</a>. Cropped and darkened; the modified version is published under the same licence.",
     legal2:"Terms of use · Privacy policy"
   };
 
